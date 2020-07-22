@@ -209,7 +209,7 @@ namespace FiasLoad
         }
 
 
-        static private bool DBF2SQL(string dbfs_path)//Данное значение типа String из источника данных не может быть преобразовано в тип uniqueidentifier указанного столбца назначения.
+        static private bool DBF2SQL(string dbfs_path)
         {
             try
             {
@@ -402,7 +402,7 @@ namespace FiasLoad
 
             return true;
         }
-        private static bool TestSqlBulkCopy(ref string[] lines, string tablename)
+        private static bool TestSqlBulkCopy(ref string[] lines, string tablename)//Данное значение типа String из источника данных не может быть преобразовано в тип uniqueidentifier указанного столбца назначения.
         {
             //bulk insert
             var columns = lines[0].Split('|');
