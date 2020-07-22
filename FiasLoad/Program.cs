@@ -477,21 +477,21 @@ namespace FiasLoad
             ret += "TRIM(OFFNAME) as OFFNAME, ";
             ret += "TRIM(POSTALCODE) as POSTALCODE, ";
             ret += "TRIM(SHORTNAME) as SHORTNAME, ";
-            ret += "TRIM(AOLEVEL) as AOLEVEL, ";
+            ret += "AOLEVEL, ";
             ret += "TRIM(CODE) as CODE, ";
             ret += "TRIM(PLAINCODE) as PLAINCODE, ";
-            ret += "TRIM(ACTSTATUS) as ACTSTATUS, ";
-            ret += "TRIM(LIVESTATUS) as LIVESTATUS, ";
-            ret += "TRIM(CURRSTATUS) as CURRSTATUS, ";
+            ret += "ACTSTATUS, ";
+            ret += "LIVESTATUS, ";
+            ret += "CURRSTATUS, ";
             ret += "TRIM(IFNSFL) as IFNSFL, ";
             ret += "TRIM(TERRIFNSFL) as TERRIFNSFL, ";
             ret += "TRIM(IFNSUL) as IFNSUL, ";
             ret += "TRIM(TERRIFNSUL) as TERRIFNSUL, ";
             ret += "TRIM(OKATO) as OKATO, ";
             ret += "TRIM(OKTMO) as OKTMO, ";
-            ret += "TRIM(STARTDATE) as STARTDATE, ";
-            ret += "TRIM(ENDDATE) as ENDDATE, ";
-            ret += "TRIM(UPDATEDATE) as UPDATEDATE, ";
+            ret += "STARTDATE, ";
+            ret += "ENDDATE, ";
+            ret += "UPDATEDATE, ";
             ret += "\"\" as STRSTATUS";
 
             return ret;
@@ -500,13 +500,13 @@ namespace FiasLoad
         public static string GenearateSQLForHouseTable()
         {
             string ret = "";
-            ret += "TRIM(HOUSEID) as HOUSEID, ";
-            ret += "TRIM(HOUSEGUID) as HOUSEGUID, ";
-            ret += "TRIM(AOGUID) as AOGUID, ";
+            ret += "HOUSEID, ";
+            ret += "HOUSEGUID, ";
+            ret += "AOGUID, ";
             ret += "TRIM(POSTALCODE) as POSTALCODE, ";
             ret += "TRIM(HOUSENUM) as HOUSENUM, ";
             ret += "\"\" as C1, ";
-            ret += "TRIM(ESTSTATUS) as ESTSTATUS, ";
+            ret += "ESTSTATUS, ";
             ret += "TRIM(BUILDNUM) as BUILDNUM, ";
             ret += "TRIM(STRUCNUM) as STRUCNUM, ";
             ret += "TRIM(IFNSFL) as IFNSFL, ";
@@ -515,9 +515,9 @@ namespace FiasLoad
             ret += "TRIM(TERRIFNSUL) as TERRIFNSUL, ";
             ret += "TRIM(OKATO) as OKATO, ";
             ret += "TRIM(OKTMO) as OKTMO, ";
-            ret += "TRIM(STARTDATE) as STARTDATE, ";
-            ret += "TRIM(ENDDATE) as ENDDATE, ";
-            ret += "TRIM(UPDATEDATE) as UPDATEDATE, ";
+            ret += "STARTDATE, ";
+            ret += "ENDDATE, ";
+            ret += "UPDATEDATE, ";
             ret += "STRSTATUS";
 
             return ret;
