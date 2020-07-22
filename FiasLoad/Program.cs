@@ -171,17 +171,16 @@ namespace FiasLoad
                 execSQL.ExecuteNonQuery();
                 execSQL.Connection.Close();
 
+                //execSQL.CommandType = CommandType.StoredProcedure;
+                //execSQL.CommandTimeout = 0;
+                //execSQL.Connection = new SqlConnection(ConnectionStringTemplate);
+                //execSQL.Connection.Open();
+                //execSQL.CommandText = "FormatFiasHouse";
+                //execSQL.Parameters.Add("@VerDate", SqlDbType.NVarChar,10).Value = last_verDate.Date.ToString("yyyyMMdd");
 
-                execSQL.CommandType = CommandType.StoredProcedure;
-                execSQL.CommandTimeout = 0;
-                execSQL.Connection = new SqlConnection(ConnectionStringTemplate);
-                execSQL.Connection.Open();
-                execSQL.CommandText = "FormatFiasHouse";
-                execSQL.Parameters.Add("@VerDate", SqlDbType.NVarChar,10).Value = last_verDate.Date.ToString("yyyyMMdd");
 
-
-                execSQL.ExecuteNonQuery();
-                execSQL.Connection.Close();
+                //execSQL.ExecuteNonQuery();
+                //execSQL.Connection.Close();
 
                 execSQL.CommandType = CommandType.Text;
                 execSQL.Connection = new SqlConnection(ConnectionStringTemplate);
@@ -283,6 +282,20 @@ namespace FiasLoad
                             values.Clear();
                             for (int ii = 0; ii < reader.FieldCount; ii++)
                             {
+                                if ((ii == 5) && (Left(tablename.ToUpper(), 5) == "HOUSE"))
+                                {
+                                    string s = "0";
+                                    char[] arc = values[4].ToCharArray();
+
+                                    for (int i = 0; i < values[4].Length; i++)
+                                    {
+                                        if (char.IsDigit(arc[i]) == true)
+                                            s = s + arc[i];
+                                    };
+                                    s = (s == "0" ? "" : s);
+                                     values.Add(s);
+                                }
+                                else
                                 values.Add(reader[ii].ToString());
                             }
 
@@ -460,25 +473,25 @@ namespace FiasLoad
             ret += "AOID, ";
             ret += "AOGUID, ";
             ret += "PARENTGUID, ";
-            ret += "REGIONCODE, ";
-            ret += "OFFNAME, ";
-            ret += "POSTALCODE, ";
-            ret += "SHORTNAME, ";
-            ret += "AOLEVEL, ";
-            ret += "CODE, ";
-            ret += "PLAINCODE, ";
-            ret += "ACTSTATUS, ";
-            ret += "LIVESTATUS, ";
-            ret += "CURRSTATUS, ";
-            ret += "IFNSFL, ";
-            ret += "TERRIFNSFL, ";
-            ret += "IFNSUL, ";
-            ret += "TERRIFNSUL, ";
-            ret += "OKATO, ";
-            ret += "OKTMO, ";
-            ret += "STARTDATE, ";
-            ret += "ENDDATE, ";
-            ret += "UPDATEDATE, ";
+            ret += "TRIM(REGIONCODE) as REGIONCODE, ";
+            ret += "TRIM(OFFNAME) as OFFNAME, ";
+            ret += "TRIM(POSTALCODE) as POSTALCODE, ";
+            ret += "TRIM(SHORTNAME) as SHORTNAME, ";
+            ret += "TRIM(AOLEVEL) as AOLEVEL, ";
+            ret += "TRIM(CODE) as CODE, ";
+            ret += "TRIM(PLAINCODE) as PLAINCODE, ";
+            ret += "TRIM(ACTSTATUS) as ACTSTATUS, ";
+            ret += "TRIM(LIVESTATUS) as LIVESTATUS, ";
+            ret += "TRIM(CURRSTATUS) as CURRSTATUS, ";
+            ret += "TRIM(IFNSFL) as IFNSFL, ";
+            ret += "TRIM(TERRIFNSFL) as TERRIFNSFL, ";
+            ret += "TRIM(IFNSUL) as IFNSUL, ";
+            ret += "TRIM(TERRIFNSUL) as TERRIFNSUL, ";
+            ret += "TRIM(OKATO) as OKATO, ";
+            ret += "TRIM(OKTMO) as OKTMO, ";
+            ret += "TRIM(STARTDATE) as STARTDATE, ";
+            ret += "TRIM(ENDDATE) as ENDDATE, ";
+            ret += "TRIM(UPDATEDATE) as UPDATEDATE, ";
             ret += "\"\" as STRSTATUS";
 
             return ret;
@@ -487,24 +500,24 @@ namespace FiasLoad
         public static string GenearateSQLForHouseTable()
         {
             string ret = "";
-            ret += "HOUSEID, ";
-            ret += "HOUSEGUID, ";
-            ret += "AOGUID, ";
-            ret += "POSTALCODE, ";
-            ret += "HOUSENUM, ";
+            ret += "TRIM(HOUSEID) as HOUSEID, ";
+            ret += "TRIM(HOUSEGUID) as HOUSEGUID, ";
+            ret += "TRIM(AOGUID) as AOGUID, ";
+            ret += "TRIM(POSTALCODE) as POSTALCODE, ";
+            ret += "TRIM(HOUSENUM) as HOUSENUM, ";
             ret += "\"\" as C1, ";
-            ret += "ESTSTATUS, ";
-            ret += "BUILDNUM, ";
-            ret += "STRUCNUM, ";
-            ret += "IFNSFL, ";
-            ret += "TERRIFNSFL, ";
-            ret += "IFNSUL, ";
-            ret += "TERRIFNSUL, ";
-            ret += "OKATO, ";
-            ret += "OKTMO, ";
-            ret += "STARTDATE, ";
-            ret += "ENDDATE, ";
-            ret += "UPDATEDATE, ";
+            ret += "TRIM(ESTSTATUS) as ESTSTATUS, ";
+            ret += "TRIM(BUILDNUM) as BUILDNUM, ";
+            ret += "TRIM(STRUCNUM) as STRUCNUM, ";
+            ret += "TRIM(IFNSFL) as IFNSFL, ";
+            ret += "TRIM(TERRIFNSFL) as TERRIFNSFL, ";
+            ret += "TRIM(IFNSUL) as IFNSUL, ";
+            ret += "TRIM(TERRIFNSUL) as TERRIFNSUL, ";
+            ret += "TRIM(OKATO) as OKATO, ";
+            ret += "TRIM(OKTMO) as OKTMO, ";
+            ret += "TRIM(STARTDATE) as STARTDATE, ";
+            ret += "TRIM(ENDDATE) as ENDDATE, ";
+            ret += "TRIM(UPDATEDATE) as UPDATEDATE, ";
             ret += "STRSTATUS";
 
             return ret;
