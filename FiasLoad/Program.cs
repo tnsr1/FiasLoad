@@ -9,7 +9,7 @@ using System.Data.OleDb;
 using System.Data.Common;
 using System.IO.Compression;
 using LogsLib;
-using System.Text.RegularExpressions;
+//using System.Text.RegularExpressions;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FiasLoad
@@ -18,8 +18,8 @@ namespace FiasLoad
     {
         static readonly WebClient client = new WebClient();
         static private readonly string ConnectionStringTemplate = "Data Source=192.168.0.100,1433\\MSSQLSERVER;Initial Catalog=FIAS;Integrated Security=true;";
-        private const string pattern = @"\|[ ]+?\|";
-        private const string pattern2 = @"(\d)[ ]+?\|";
+//        private const string pattern = @"\|[ ]+?\|";
+//        private const string pattern2 = @"(\d)[ ]+?\|";
         private const int max_num_lines = 100000;
         private static int count_packets = 0;
         static void Main(string[] args)
@@ -296,7 +296,7 @@ namespace FiasLoad
                                      values.Add(s);
                                 }
                                 else
-                                values.Add(reader[ii].ToString());
+                                values.Add(reader[ii].ToString().Trim());//trim в select не работает
                             }
 
                             sb.AppendLine(string.Join("|", values));
@@ -304,11 +304,12 @@ namespace FiasLoad
                             {
                                 buf = sb.ToString();
                                 //var ar1 = buf.Split(line_delimeter);//для теста
-                                while (Regex.Matches(buf, pattern, RegexOptions.IgnoreCase).Count > 0)
-                                {
-                                    buf = Regex.Replace(buf, pattern, "||");
-                                }
-                                buf = Regex.Replace(buf, pattern2, "$1|");
+                                //заменил на trim()
+                                //while (Regex.Matches(buf, pattern, RegexOptions.IgnoreCase).Count > 0)
+                                //{
+                                //    buf = Regex.Replace(buf, pattern, "||");
+                                //}
+                                //buf = Regex.Replace(buf, pattern2, "$1|");
 
                                 sb.Clear();
 
@@ -327,11 +328,11 @@ namespace FiasLoad
                     if (Right(tablename, 2) == "99") //(count != 0)
                     {
                         buf = sb.ToString();
-                        while (Regex.Matches(buf, pattern, RegexOptions.IgnoreCase).Count > 0)
-                        {
-                            buf = Regex.Replace(buf, pattern, "||");
-                        }
-                        buf = Regex.Replace(buf, pattern2, "$1|");
+                        //while (Regex.Matches(buf, pattern, RegexOptions.IgnoreCase).Count > 0)
+                        //{
+                        //    buf = Regex.Replace(buf, pattern, "||");
+                        //}
+                        //buf = Regex.Replace(buf, pattern2, "$1|");
 
                         sb.Clear();
 
