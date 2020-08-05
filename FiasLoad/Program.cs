@@ -164,12 +164,12 @@ namespace FiasLoad
                 if (!DBF2SQL(path))
                     return;
 
-                execSQL.CommandType = CommandType.Text;
-                execSQL.Connection = new SqlConnection(ConnectionStringTemplate);
-                execSQL.Connection.Open();
-                execSQL.CommandText = "update v set CopyToCSV = '" + DateTime.Now.Date.ToString("yyyyMMdd") + "'  from dbo.Versions v where VerDate ='" + last_verDate.Date.ToString("yyyyMMdd") + "'";
-                execSQL.ExecuteNonQuery();
-                execSQL.Connection.Close();
+                //execSQL.CommandType = CommandType.Text;
+                //execSQL.Connection = new SqlConnection(ConnectionStringTemplate);
+                //execSQL.Connection.Open();
+                //execSQL.CommandText = "update v set CopyToCSV = '" + DateTime.Now.Date.ToString("yyyyMMdd") + "'  from dbo.Versions v where VerDate ='" + last_verDate.Date.ToString("yyyyMMdd") + "'";
+                //execSQL.ExecuteNonQuery();
+                //execSQL.Connection.Close();
 
                 //execSQL.CommandType = CommandType.StoredProcedure;
                 //execSQL.CommandTimeout = 0;
