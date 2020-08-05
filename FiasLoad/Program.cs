@@ -17,7 +17,7 @@ namespace FiasLoad
     class Program
     {
         static readonly WebClient client = new WebClient();
-        static private readonly string ConnectionStringTemplate = "Data Source=192.168.0.100,1433\\MSSQLSERVER;Initial Catalog=FIAS;Integrated Security=true;";
+        static private readonly string ConnectionStringTemplate = "Data Source=192.168.0.150,1433\\MSSQLSERVER;Initial Catalog=FIAS;Integrated Security=true;";
 //        private const string pattern = @"\|[ ]+?\|";
 //        private const string pattern2 = @"(\d)[ ]+?\|";
         private const int max_num_lines = 100000;
@@ -252,7 +252,7 @@ namespace FiasLoad
                         fields_list = GenearateSQLForHouseTable();
                     }
 
-                    sql = "SELECT " + fields_list.ToLower() + " FROM " + tablename;
+                    sql = "SELECT " + fields_list.ToLower() + " FROM " + tablename + ((Left(tablename.ToUpper(), 6) == "ADDROB") ? " ORDER BY AOID" : " ORDER BY HOUSEID");
 
                     List<string> values = new List<string>();
                     sourceCommand = new OleDbCommand(sql, sourceConnection);
@@ -363,6 +363,8 @@ namespace FiasLoad
         {
             count_packets++;
             //Сохранить в temp.csv
+            if (!Directory.Exists(@"c:\FIAS_LAST\CSV\"))
+                Directory.CreateDirectory(@"c:\FIAS_LAST\CSV\");
             string path_csv = @"c:\FIAS_LAST\CSV\temp.csv";
             var file_csv = File.Create(path_csv);
             file_csv.Close();
